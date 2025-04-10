@@ -18,23 +18,27 @@ bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh \
 ``` 
 
 ## Output
-/path/to/your/files/ <br />
-├── 01.Dorado_basecall/ <br />
-│   ├── dorado.bam <br />
-|   └── md5sums.txt <br />
-├── 02.Dorado_demux/ <br />
-│   ├── md5sums.txt <br />
-│   ├── sample_id_1/ <br />
-│   |  ├── alias.fastq.gz <br />
-│   |  └── ... <br />
-│   ├── sample_id_2/ <br />
-│   |  ├── alias.fastq.gz <br />
-│   |  └── ... <br />
-├── sequencing_summary.txt <br />
-├── sampleSheet.csv <br />
-├── POD5 <br />
-├── command.sh <br />
-└── command.log <br />
+The output file of `command.sh` should have a structure like this!
+
+```console
+/path/to/your/files/
+├── 01.Dorado_basecall
+│   ├── dorado.bam 
+|   └── md5sums.txt
+├── 02.Dorado_demux
+│   ├── md5sums.txt
+│   ├── sample_id_1
+│   |  ├── alias.fastq.gz
+│   |  └── ... 
+│   ├── sample_id_2
+│   |  ├── alias.fastq.gz
+│   |  └── ...
+├── sequencing_summary.txt
+├── sampleSheet.csv
+├── POD5
+├── command.sh
+└── command.log
+```
 
 ## Files preparation
 1. create softlink of path to POD5 (optional)
