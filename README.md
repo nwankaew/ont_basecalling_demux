@@ -34,7 +34,7 @@ The output file of `command.sh` should have a structure like this!
 │   |  ├── alias.fastq.gz
 │   |  └── ...
 ├── sequencing_summary.txt
-├── sampleSheet.csv
+├── doradoSheet.csv
 ├── POD5
 ├── command.sh
 └── command.log
@@ -44,7 +44,7 @@ The output file of `command.sh` should have a structure like this!
 1. create softlink of path to POD5 (optional)
 2. create a doradoSheet.csv file (comma-delimited) <font color="red">**(MUST)**</font>
 
-The header of `daradoSheet.csv` \
+The header of `doradoSheet.csv` \
 ```console
 experiment_id,kit,flow_cell_id,sample_id,barcode,alias
 ```
