@@ -34,7 +34,11 @@ The output file of `command.sh` should have a structure like this!
 │   |  ├── alias.fastq.gz
 │   |  └── ...
 ├── sequencing_summary.txt
+<<<<<<< HEAD
 ├── sampleSheet.csv
+=======
+├── doradoSheet.csv
+>>>>>>> doc_readme
 ├── POD5
 ├── command.sh
 └── command.log
@@ -42,32 +46,34 @@ The output file of `command.sh` should have a structure like this!
 
 ## Files preparation
 1. create softlink of path to POD5 (optional)
-2. create a doradoSheet.csv file (comma-delimited) <font color="red">**(MUST)**</font>
+2. create a doradoSheet.csv in comma-delimited file <font color="red">**(Required)**</font>
 
-The header of `daradoSheet.csv` \
+The header of `doradoSheet.csv` \
 ```console
 experiment_id,kit,flow_cell_id,sample_id,barcode,alias
 ```
 
 **experiment_id**
 - Please simplified your experiment folder
-- No longer than 40 characters  
-- No special character `"."`
+- experiment_id <font color="red">**must not**</font> longer than 40 characters
+- experiment_id <font color="red">**must not**</font> contain spaces and `.` (dot)
+- Special character allow to use: `-` (dash) and `_` (underscore)
 
 **kit**
 - Must have prefix `"SQK-"` e.g., `SQK-RBK114-96`
 - Please use the barcoding kit follow the Dorado list
 
 **flow_cell_id**
-- Flow cell ID e.g., `PAY83862`
+- Flow cell ID e.g., `PAY12345`
 
 **sample_id**
-- Project ID e.g., `si_250001`
+- Project ID e.g., `project_250001`
 
 **barcode**
-- Barcode tag <font color="red">**MUST**</font> be two-digit e.g., `barcode01`, `barcode02`, ..., `barcode96`
+- Barcode numbers <font color="red">**MUST BE**</font> two-digit e.g., `barcode01`, `barcode02`, ..., `barcode96`
 
 **alias** or **Sample name**  
 - Please simplified your sample name
-- No spaces  
-- No special character `"."`
+- Sample names <font color="red">**must not**</font> contain the substring `barcode`
+- Sample names <font color="red">**must not**</font> contain spaces and `.` (dot)
+- Special character allow to use: `-` (dash) and `_` (underscore)
