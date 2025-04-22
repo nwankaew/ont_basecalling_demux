@@ -59,13 +59,13 @@ experiment_id,kit,flow_cell_id,sample_id,barcode,alias
 - Please use the barcoding kit follow the Dorado list
 
 **flow_cell_id**
-- Flow cell ID e.g., `PAY83862`
+- Flow cell ID e.g., `PAY12345`
 
 **sample_id**
-- Project ID e.g., `si_250001`
+- Project ID e.g., `project_250001`
 
 **barcode**
-- Barcode tag <font color="red">**MUST**</font> be two-digit e.g., `barcode01`, `barcode02`, ..., `barcode96`
+- Barcode numbers <font color="red">**MUST**</font> be two-digit e.g., `barcode01`, `barcode02`, ..., `barcode96`
 
 **alias** or **Sample name**  
 - Please simplified your sample name
