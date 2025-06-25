@@ -127,6 +127,10 @@ fi
 /data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado summary \
   "$outdir/01.Dorado_basecall/dorado.bam" > "$outdir/sequencing_summary.txt"
 
+# Gzip all fastq in $outdir/02.Dorado_demux
+echo "GZIP fastq files..."; echo
+find "$outdir/02.Dorado_demux" -type f -name "*.fastq" -exec gzip {} \;
+
 # Check results
 files=$(cut -f1 "$outdir/sequencing_summary.txt" | grep -v "filename" | sort -u | wc -l)
 echo "Basecalled files: $files"
