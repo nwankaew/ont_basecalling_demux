@@ -99,6 +99,11 @@ else
     > "$outdir/01.Dorado_basecall/dorado.bam"
 
   md5sum "$outdir/01.Dorado_basecall/dorado.bam" > "$outdir/01.Dorado_basecall/filecheck.md5"
+
+  # Generate summary
+  echo "Generate sequencing summary..."
+  /data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado summary \
+    "$outdir/01.Dorado_basecall/dorado.bam" > "$outdir/sequencing_summary.txt"
 fi
 
 # Demultiplexing step
@@ -122,10 +127,6 @@ else
     --output-dir "$outdir/02.Dorado_demux" \
     "$outdir/01.Dorado_basecall/dorado.bam"
 fi
-
-# Generate summary
-/data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado summary \
-  "$outdir/01.Dorado_basecall/dorado.bam" > "$outdir/sequencing_summary.txt"
 
 # Gzip all fastq in $outdir/02.Dorado_demux
 echo "GZIP fastq files..."; echo
