@@ -11,7 +11,7 @@ graph TD
     sw -- "on" --> Demux
     Demux --> rename_fastq["Rename FASTQ"]
     rename_fastq --> create_md5sum["Create md5sum"]
-    Demux --> summary["Summary"]
+    Basecaller --> summary["Summary"]
 
     classDef switchStyle fill:#ffcc00,stroke:#333,stroke-width:2px,color:#000;
     class sw switchStyle;
