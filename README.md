@@ -1,20 +1,47 @@
 # Bacterial_Basecalling_Demux
 Dorado basecalling pipeline for Nanopore sequencing data. The sequencing reads are basecalled by Dorado and demultiplexed. The the file in FASTQ file format were renamed into its common name follow by column alias of sampleSheet.csv  (sample.fastq.gz). Then, the final fastq file were move into its project_id (from column "sample_id").
 
+## About pipeline
+
+```mermaid
+graph TD
+    GetInput["Get Input"] --> sw["--skip_basecaller"]
+    sw -- "off" --> Basecaller["Basecaller"]
+    Basecaller --> Demux["Demux"]
+    sw -- "on" --> Demux
+    Demux --> rename_fastq["Rename FASTQ"]
+    rename_fastq --> create_md5sum["Create md5sum"]
+    Basecaller --> summary["Summary"]
+
+    classDef switchStyle fill:#ffcc00,stroke:#333,stroke-width:2px,color:#000;
+    class sw switchStyle;
+```
+
 ## TO Run This Script
 ```console
 # To run for help
-bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh -h
+bash /path/to/script/dna_dorado.sh -h
 
 # To run for basecalling and demux
-bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh \
+bash /path/to/script/dna_dorado.sh \
     -i $PWD/POD5 \
     -o $PWD \
     -s sampleSheet.csv \
     -m sup@v5.0.0 \
     -k SQK-RBK114-96 \
     -a "--no-trim" \
-    -d ' ' &> command.logs
+    -d ' '
+
+# To run script by skiping basecaller
+bash /path/to/script/dna_dorado.sh \
+    -i $PWD/POD5 \
+    -o $PWD \
+    -s sampleSheet.csv \
+    -m sup@v5.0.0 \
+    -k SQK-RBK114-96 \
+    -a "--no-trim" \
+    -d ' ' \
+    --skip_basecaller
 ``` 
 
 ## Output
@@ -34,10 +61,10 @@ The output file of `command.sh` should have a structure like this!
 │   |  ├── alias.fastq.gz
 │   |  └── ...
 ├── sequencing_summary.txt
-├── doradoSheet.csv
+├── sampleSheet.csv
 ├── POD5
 ├── command.sh
-└── command.log
+└── pipeline_YYYYMMDD_HHMMSS.log
 ```
 
 ## Files preparation
