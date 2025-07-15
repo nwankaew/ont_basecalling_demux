@@ -89,8 +89,8 @@ else
 
   mkdir -p "$outdir/01.Dorado_basecall"
   echo "Running basecalling..."
-  echo; echo "/data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado basecaller -x cuda:all --min-qscore 10 --recursive $basecall_adapter_args $basecalled_model $indir > $outdir/01.Dorado_basecall/dorado.bam"; echo
-  /data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado basecaller \
+  echo; echo "/path/to/dorado basecaller -x cuda:all --min-qscore 10 --recursive $basecall_adapter_args $basecalled_model $indir > $outdir/01.Dorado_basecall/dorado.bam"; echo
+  /path/to/dorado basecaller \
     -x cuda:all \
     --min-qscore 10 \
     --recursive \
@@ -102,7 +102,7 @@ else
 
   # Generate summary
   echo "Generate sequencing summary..."
-  /data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado summary \
+  /path/to/dorado summary \
     "$outdir/01.Dorado_basecall/dorado.bam" > "$outdir/sequencing_summary.txt"
 fi
 
@@ -110,16 +110,16 @@ fi
 mkdir -p "$outdir/02.Dorado_demux"
 echo "Running demultiplexing..."
 if [[ "$barcode_kit" == "--no-classify" ]]; then
-  echo; echo "/data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado demux $barcode_kit --emit-fastq $demux_adapter_args --output-dir $outdir/02.Dorado_demux $outdir/01.Dorado_basecall/dorado.bam"; echo
-  /data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado demux \
+  echo; echo "/path/to/dorado demux $barcode_kit --emit-fastq $demux_adapter_args --output-dir $outdir/02.Dorado_demux $outdir/01.Dorado_basecall/dorado.bam"; echo
+  /path/to/dorado demux \
     $barcode_kit \
     --emit-fastq \
     $demux_adapter_args \
     --output-dir "$outdir/02.Dorado_demux" \
     "$outdir/01.Dorado_basecall/dorado.bam"
 else
-  echo; echo "/data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado demux --kit-name $barcode_kit --sample-sheet $sampleCSV --emit-fastq $demux_adapter_args --output-dir $outdir/02.Dorado_demux $outdir/01.Dorado_basecall/dorado.bam"; echo
-  /data/Basecaller/dorado-0.9.0-linux-x64/bin/dorado demux \
+  echo; echo "/path/to/dorado demux --kit-name $barcode_kit --sample-sheet $sampleCSV --emit-fastq $demux_adapter_args --output-dir $outdir/02.Dorado_demux $outdir/01.Dorado_basecall/dorado.bam"; echo
+  /path/to/dorado demux \
     --kit-name "$barcode_kit" \
     --sample-sheet "$sampleCSV" \
     --emit-fastq \
@@ -139,8 +139,8 @@ dupF=$(awk 'NR>1' "$outdir/sequencing_summary.txt" | cut -f2 | sort | uniq -c | 
 echo "Duplicated read IDs: $dupF"
 
 # Rename fastqs
-source /data/miniconda3/bin/activate ngs
-python3 /data/Basecaller/dorado-0.9.0-linux-x64/script/rename_file.py \
+source /path/to/miniconda3/bin/activate ngs
+python3 /path/to/rename_file.py \
   "$outdir/02.Dorado_demux/" "$sampleCSV"
 
 echo "Pipeline completed on: $(date)"

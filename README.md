@@ -20,10 +20,10 @@ graph TD
 ## TO Run This Script
 ```console
 # To run for help
-bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh -h
+bash /path/to/script/dna_dorado.sh -h
 
 # To run for basecalling and demux
-bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh \
+bash /path/to/script/dna_dorado.sh \
     -i $PWD/POD5 \
     -o $PWD \
     -s sampleSheet.csv \
@@ -33,7 +33,7 @@ bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh \
     -d ' '
 
 # To run script by skiping basecaller
-bash /data/Basecaller/dorado-0.9.0-linux-x64/script/dna_dorado090.sh \
+bash /path/to/script/dna_dorado.sh \
     -i $PWD/POD5 \
     -o $PWD \
     -s sampleSheet.csv \
