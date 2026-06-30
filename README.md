@@ -1,4 +1,4 @@
-# Bacterial_Basecalling_Demux
+# ONT_Basecalling_Demux
 Dorado basecalling pipeline for Nanopore sequencing data. The sequencing reads are basecalled by Dorado and demultiplexed. The the file in FASTQ file format were renamed into its common name follow by column alias of sampleSheet.csv  (sample.fastq.gz). Then, the final fastq file were move into its project_id (from column "sample_id").
 
 ## About pipeline
